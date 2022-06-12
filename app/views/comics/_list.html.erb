@@ -10,11 +10,21 @@
       <thead>
         <tr>
           <th scope="col">タイトル</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
+          <th scope="col">ジャンル</th>
+          <th scope="col">連載</th>
+          <th scope="col">連載機関</th>
         </tr>
       </thead>
+      <tbody>
+      <% Comic.all.each do |comic| %>
+        <tr>
+          <td><%= comic.title %></td>
+          <td><%= comic.genre %></td>
+          <td><%= comic.publisher %></td>
+          <td><%= comic.serialization_started_year %> ~ <%= comic.serialization_end_year %></td>
+        </tr>
+      <% end %>
+      </tbody>
     </table>
   </div>
 </div>
