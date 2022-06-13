@@ -9,4 +9,5 @@ class GamesController < ApplicationController
     render plain: "game started! Let's start next section."
   end
 
+
 end
