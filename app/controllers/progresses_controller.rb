@@ -13,4 +13,10 @@ class ProgressesController < ApplicationController
     progress.save!
   end
 
+  private
+
+  def create_params
+    params.require(:progress).premit(:question_id, :answer)
+  end
+
 end
