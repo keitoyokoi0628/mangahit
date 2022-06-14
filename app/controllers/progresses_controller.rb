@@ -6,7 +6,7 @@ class ProgressesController < ApplicationController
   end
 
   def create
-    current_game = Gama.find(params[:id])
+    current_game = Game.find(params[:id])
 
     progress = current_game.progresses.new(create_params)
     progress.assign_sequence
