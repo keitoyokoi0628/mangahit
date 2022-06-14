@@ -6,7 +6,7 @@ class ProgressesController < ApplicationController
   end
 
   def create
-    current_game = Game.find(params[:id])
+    current_game = Game.find(params[:game_id])
 
     progress = current_game.progresses.new(create_params)
     progress.assign_sequence
@@ -16,7 +16,7 @@ class ProgressesController < ApplicationController
   private
 
   def create_params
-    params.require(:progress).premit(:question_id, :answer)
+    params.require(:progress).permit(:question_id, :answer)
   end
 
 end
