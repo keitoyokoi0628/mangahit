@@ -2,7 +2,7 @@ class Extract ionAlgorithm
   after_reader :game
   after_reader :query
 
-  def initiallize(game)
+  def initialize(game)
     Rails.logger.debug('ExtractionAlgorithm initialized')
     @game = game
     @query = Comic.all
