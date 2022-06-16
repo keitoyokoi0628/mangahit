@@ -8,9 +8,15 @@ class ProgressesController < ApplicationController
 
   def create
     current_game = Game.find(params[:game_id])
+
+    #回答した内容を保存する
     progress = current_game.progresses.new(create_params)
     progress.assign_sequence
     progress.save!
+
+    #絞り込みを実行する
+    @extract_comics = ExtractionAlgorithm.new(current_game).compute
+    
     next_question = Question.next_question(current_game)
     if next_question.blank?
       current_game.status = 'finished'
