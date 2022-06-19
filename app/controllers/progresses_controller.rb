@@ -16,7 +16,13 @@ class ProgressesController < ApplicationController
 
     #絞り込みを実行する
     @extract_comics = ExtractionAlgorithm.new(current_game).compute
-    
+
+    #絞り込みの結果が1件の場合、チャレンジ（正解を当てに行く）へ連携
+    if @extract_comics.count == 1
+      redirect_to challenge_game_path(current_game)
+      return
+    end
+
     next_question = Question.next_question(current_game)
     if next_question.blank?
       current_game.status = 'finished'
