@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     member do
       get :give_up
+      get :challenge
     end
 
     resources :progresses, only: %i[new create]
