@@ -1,9 +1,9 @@
+
 class ExtractionAlgorithm
   attr_reader :game
   attr_reader :query
 
   def initialize(game)
-    Rails.logger.debug('ExtractionAlgorithm initialized')
     @game = game
     @query = Comic.all
   end
@@ -11,24 +11,26 @@ class ExtractionAlgorithm
   def compute
     progresses = @game.progresses
     progresses.each do |progress|
+      # question
+      question = progress.question
 
-     question = progress.question
+      # ==========ここから追加する==========
+      case question.algorithm
+        when 'serialization_end'
+          serialization_end?(progress)
+        else
+          raise Exception('Invalid algorithm. --> ' + question.algorithm.to_s)
+      end
+      # ==========ここまで追加する==========
 
-     case question.algorithm
-      when 'serialization_end'
-        serialization_end?(progress)
-      else
-        raise Exeption('Invalid algorithm. -->' + question.algorithm.to_s)
-    end
-
-
-      Rails.logger.debug('On the way quary is ' + @query.to_sql.to_s)
+      Rails.logger.debug('On the way query is ' + @query.to_sql.to_s)
       Rails.logger.debug('On the way comics are ' + @query.pluck(:title).to_a.to_s)
 
     end
-    @quary
+    @query
   end
 
+  # ==========ここから追加する==========
   private
 
   def serialization_end?(progress)
@@ -42,5 +44,6 @@ class ExtractionAlgorithm
     end
 
   end
+  # ==========ここまで追加する==========
 
 end

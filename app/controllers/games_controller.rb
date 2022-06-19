@@ -10,9 +10,9 @@ class GamesController < ApplicationController
   end
 
   def challenge
-      current_game = Game.find(params[:id])
-      extract_comics = ExtractionAlgorithm.new(current_game).compute
-      @comic = extract_comics.first
+    current_game = Game.find(params[:id])
+    extract_comics =  ExtractionAlgorithm.new(current_game).compute
+    @comic = extract_comics.first
   end
 
   def give_up
