@@ -47,7 +47,6 @@ class ExtractionAlgorithm
 
   end
   # ==========ここまで追加する==========
-
   def genre_match(progress)
 
     if progress.positive_answer?
@@ -55,7 +54,9 @@ class ExtractionAlgorithm
     end
 
     if progress.negative_answer?
-      @query = @query.where.not("comics.genre like ?", "#{progress.question.eval_value}%")
+      @query = @query.where.not("comics.genre like ?", "%#{progress.question.eval_value}%")
     end
+
   end
+
 end
