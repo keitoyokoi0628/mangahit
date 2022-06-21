@@ -32,7 +32,7 @@ class ProgressesController < ApplicationController
     next_question = Question.next_question(current_game)
     if next_question.blank?
       current_game.status = 'finished'
-      current_game.result = 'incorrect'
+      current_game.result = :incorrect
       current_game.save!
       redirect_to give_up_game_path(current_game)
       return
