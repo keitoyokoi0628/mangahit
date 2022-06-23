@@ -47,6 +47,7 @@ class ExtractionAlgorithm
 
   end
   # ==========ここまで追加する==========
+
   def genre_match(progress)
 
     if progress.positive_answer?
